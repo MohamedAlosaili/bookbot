@@ -10,6 +10,7 @@ def main():
     bot = Bot(cli.options)
     bot.analyze()
 
+
 try:
     main()
 except TypeError as e:

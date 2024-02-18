@@ -16,25 +16,25 @@ class CLI:
                 "flag": "--help",
                 "description": "Get list of available flags and brief description",
                 "alias": "-h",
-                "defaultValue": True
+                "defaultValue": 'yes'
             },
             {
                 "flag": "--words-count",
                 "description": "Add word count in the final report. default to true set to false to remove '--words-count=false'",
                 "alias": "-wc",
-                "defaultValue": True
+                "defaultValue": 'yes'
             },
             {
                 "flag": "--lines-count",
                 "description": "Add lines count in the final report. default to true set to false to remove '--lines-count=false'",
                 "alias": "-lc",
-                "defaultValue": True
+                "defaultValue": 'yes'
             },
             {
                 "flag": "--characters-count",
                 "description": "Add characters count in the final report. default to true set to false to remove '--characters-count=false'",
                 "alias": "-cc",
-                "defaultValue": True
+                "defaultValue": 'yes'
             },
             {
                 "flag": "--target-file",
@@ -72,7 +72,14 @@ class CLI:
                 exit(1)
             
             if len(flag) < 2: continue
-
+            
+            if not key.startswith("--"):
+                for f in self.__flags:
+                    if f["alias"] == key:
+                        key = f["flag"]
+                        break 
+    
+            print("flag", flag)
             value = flag[1]
 
             self.options[key] = value

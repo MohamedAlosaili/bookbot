@@ -74,15 +74,15 @@ class Bot:
         self.print.bold(f"--- Begin report of {file_path} ---")
         self.print.normal()
         
-        if self.options["--words-count"] or self.options["--lines-count"]:
+        if self.options["--words-count"] == 'yes' or self.options["--lines-count"] == 'yes':
             self.print.info("File Info: ")
-        if self.options["--words-count"]:
+        if self.options["--words-count"] == 'yes':
             self.print.normal(f"- {words_count} was found in the document")
-        if self.options["--lines-count"]:
+        if self.options["--lines-count"] == 'yes':
             self.print.normal(f"- The document contains {lines_count} lines")
         self.print.normal()
         
-        if self.options["--characters-count"]:
+        if self.options["--characters-count"] == 'yes':
             for d in sorted_list: 
                 if not d["char"].isalpha(): continue    
                 self.print.fancy(f"The '{d["char"]}' character was found {d["count"]} times")
